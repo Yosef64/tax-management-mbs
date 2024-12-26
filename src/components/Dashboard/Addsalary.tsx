@@ -98,6 +98,7 @@ export function AddOvertimeAllowance() {
   const [error, setError] = useState("");
   const userData = getCurrentUser();
   const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
   const [activity, setActivity] = useState<UserActivity>({
     id: userData.email,
     type: "overtime",
@@ -123,6 +124,10 @@ export function AddOvertimeAllowance() {
         type: activity.type,
         hours: activity.hours,
         rate: activity.rate,
+      });
+      toast({
+        title: "Successfully added!",
+        variant: "success",
       });
       setError("");
     } catch (err) {
